@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 html, body {
   width: 100%;
@@ -21,5 +22,61 @@ html {
     position: absolute;
     top: 0;
     left: 0;
+    background: #000;
+    .title {
+      height: 1.4rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      color: #fff;
+      transform: translateY(-1.5rem);
+      h1 {
+        font-size: .5rem;
+        text-align: center;
+        height: 0.75rem;
+      }
+      h3 {
+        font-size: .26rem;
+        text-align: center;
+        height: 0.45rem;
+        margin-top: .2rem;
+        letter-spacing: .04rem;
+      }
+    }
+    .progress {
+      width: 4.6rem;
+      height: 0.3rem;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      transform: translateY(1rem); 
+      border-radius: .2rem;
+      .pro-inner {
+        width: 0;
+        height: 100%;
+        background: -webkit-linear-gradient(left bottom, #5cb85c 0%, #5cb85c 25%, #74c274 25%, #74c274 50%, #5cb85c 50%, #5cb85c 75%, #74c274 75%, #74c274 100%);
+        border-radius: .2rem;
+        background-size: .3rem .3rem;
+        animation: runt 1s linear infinite;
+        background-repeat: repeat;
+        transition: all 0.3s linear 0s;
+      }
+    }
+  }
+}
+
+@keyframes runt {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 0 -.3rem;
   }
 }
