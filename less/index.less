@@ -1,3 +1,4 @@
+@url: '../img/';
 * {
   margin: 0;
   padding: 0;
@@ -10,9 +11,15 @@ html, body {
 html {
   font-size: 100px;
 }
-.layout, .loading {
+.layout, .loading, .phone {
   width: 100%;
   height: 100%;
+}
+.loading {
+  display: none;
+}
+.phone {
+  display: block;
 }
 .layout {
   max-width: 640px;
@@ -70,6 +77,76 @@ html {
       }
     }
   }
+  .phone {
+    background: url(../img/zf_phoneBg.jpg) no-repeat;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .tittle {
+      color: #fff;
+      width: 2.62rem;
+      height: 1.25rem;
+      margin: 0 auto;
+      margin-top: .5rem;
+      text-align: center;
+      h2 {
+        font-size: .6rem;
+      }
+      h5 {
+        margin-top: .2rem;
+        font-size: .2rem;
+      }
+    }
+    .currenttime {
+      color: #fff;
+      text-align: center;
+      font-size: .4rem;
+      margin-top: .5rem;
+    }
+    .phoneanswer {
+      width: 5.2rem;
+      height: 3.6rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -2.6rem;
+      bottom: .3rem;
+      background: url('@{url}zf_phoneListen.png') no-repeat;
+      background-size: contain;
+      a {
+        position: absolute;
+        right: -.07rem;
+        bottom: .47rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        border: 3px solid red;
+        border-radius: 50%;
+        animation: runScale 2s linear infinite;
+      }
+    }
+    .phonecall {
+      display: none;
+      width: 5.2rem;
+      height: 6.59rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -2.6rem;
+      bottom: .3rem;
+      background: url('@{url}zf_phoneDetail.png') no-repeat;
+      background-size: contain;
+      a {
+        position: absolute;
+        left: 50%;
+        margin-left: -.8rem;
+        bottom: .28rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        background: red;
+        opacity: 0;
+        border-radius: 50%;
+      }
+    }
+  }
 }
 
 @keyframes runt {
@@ -78,5 +155,16 @@ html {
 	}
 	100% {
 		background-position: 0 -.3rem;
+  }
+}
+@keyframes runScale{
+  0 {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
   }
 }

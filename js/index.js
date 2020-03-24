@@ -1,5 +1,4 @@
 //rem 模块
-
 var remRender =  (function () {
   var html = document.documentElement
   
@@ -74,4 +73,81 @@ var loadingRender = (function () {
     }
   }
 })()
-loadingRender.init()
+
+
+//phone模块
+var phoneRender = (function () {
+  var $phone = $('.phone')
+  var $phoneanswer = $('.phoneanswer')
+  var $aBtn = $('.phoneanswer a')
+  var $phonecall = $('.phonecall')
+  var $firstAudio = $('#firstaudio')
+  var $secondAudio = $('#secondaudio')
+  var $stop = $phonecall.find('a')
+  var $ct = $('.ct')
+  var timer = null
+  var num = 0
+  
+  function run() {
+    var runTime = function () {
+      ++num
+      if (num < 10) {
+        num = '0' + num
+      }
+      $ct.html(num)
+    }
+    $aBtn.on('tap', function () {
+      $(this).parent().remove()
+      $phonecall.css('display', 'block')
+      $firstAudio.get(0).pause();
+      $secondAudio.get(0).play()
+      clearInterval(timer)
+      num = 0
+      $ct.text('00')
+      timer = setInterval(runTime, 1000)
+    })
+    timer = setInterval(runTime, 1000)
+
+    $stop.on('tap', function () {
+      clearInterval(timer)
+      $phone.remove()
+    })
+    
+  }
+  
+  return {
+    init: function () {
+      run()
+    }
+  }
+})()
+
+
+
+    //hash
+var hash = (function () {
+  var run = function () {
+    var url = window.location.href
+    var num = url.indexOf('#')
+    var hash = url.substr(num + 1)
+    switch (hash) {
+      case 'loading':
+        console.log('loading run');
+        loadingRender.init()
+        break;
+      case 'phone':
+        console.log('phone run');
+        phoneRender.init()
+        break;
+      case 'default':   
+        loadingRender.init()
+      break;
+    } 
+  }
+  return {
+    init: function () {
+      run()
+    }
+  }
+})()
+hash.init()
