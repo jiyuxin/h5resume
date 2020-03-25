@@ -42,7 +42,6 @@ let loadingRender = (function () {
       oImg.onload = function () {
         oImg = null
         oInner.css('width', ((++num / len)*100 + '%'))
-        console.log(num);
         if (num === len) {
           clearTimeout(timer)
           done()
@@ -57,12 +56,13 @@ let loadingRender = (function () {
         return
       } 
       alert('网络有点慢，请稍后再试！！！')
-      window.location.href = 'http://www.baidu.com'
+      // window.location.href = 'http://www.baidu.com'
     }, 5000)
   }
   function done() {
     let removeTimer = setTimeout(function () {
       $loading.remove()
+      phoneRender.init()
     }, 1000)
   }
   return {
@@ -73,7 +73,7 @@ let loadingRender = (function () {
     }
   }
 })()
-// loadingRender.init()
+loadingRender.init()
 
 // phone 模块
 let phoneRender = (function () {
@@ -109,9 +109,11 @@ let phoneRender = (function () {
   function callBtn() {
     $secondAudio.pause()
     $phone.remove()
+    messageRender.init()
   }
   return {
     init: function () {
+      $phone.css('display', 'block')
       $firstAudio.play()   //播放音乐
       timer = setInterval(runTime, 1000)     //开启计时功能
       $answerA.on('singleTap', answerBtn)
@@ -184,10 +186,11 @@ let messageRender = (function () {
   }
   return {
     init: function () {
+      $message.css('display', 'block')
       $item.eq(0).addClass('active')
       timer = setInterval(messageShow, 1000)
       $submit.on('singleTap', subEvent)
     }
   }
 })()
-messageRender.init()
+// messageRender.init()
