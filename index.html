@@ -2,44 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet/less" href="less/index.less">
-  <script src="js/less.min.js"></script>
-  
+  <script src="js/prefixfree.min.js"></script>
 </head>
 <body>
-  <main class="layout">
-    <!-- loading 页面 -->
+  <main class="wraper">
     <section class="loading">
-      <div class="title">
+      <div class="info">
         <h1>珠峰培训</h1>
-        <h3>H5情景的交互简历</h3>
+        <h3>H5场景的交互简历</h3>
       </div>
       <div class="progress">
         <div class="pro-inner"></div>
       </div>
     </section>
     <section class="phone">
-      <div class="tittle">
-        <h2>珠峰培训</h2>
-        <h5>www.zhufengpeixun.cn</h5>
+      <div class="title"></div>
+      <div class="cale">00:00</div>
+      <div class="answer">
+        <a class="answer-a" href="javascript:;"></a>
       </div>
-      <div class="currenttime">
-        <span>0</span><span>0</span><span>:</span><span class="ct">00</>
+      <div class="call">
+        <a class="call-a" href="javascript:;"></a>
       </div>
-      <div class="phoneanswer">
+      <audio src="music/bell.mp3" class="firstaudio" loop></audio>
+      <audio src="music/say.mp3" class="secondaudio"></audio>
+    </section>
+    <section class="message">
+      <ul class="list">
+        <li class="item-stu">
+          <img src="img/zf_messageStudent.png" alt="">
+          哎，又半夜了，阿三打扫打扫的阿萨德
+        </li>
+        <li class="item-tea">
+          <img src="img/zf_messageLogo.png" alt="">
+          哎，又半夜了，阿三打扫打扫的阿萨德
+        </li>
+        <li class="item-tea">
+          <img src="img/zf_messageLogo.png" alt="">
+          哎，又半夜了，阿三打扫打扫的阿萨德
+        </li>
+        <li class="item-stu">
+          <img src="img/zf_messageStudent.png" alt="">
+          哎，又半夜了，阿三打扫打扫的阿萨德
+        </li>
+        <li class="item-stu">
+          <img src="img/zf_messageStudent.png" alt="">
+          哎，又半夜了，阿三打扫打扫的阿萨德
+        </li>
+      </ul>
+      <div class="keyboard">
+        <p></p>
         <a href="javascript:;"></a>
       </div>
-      <div class="phonecall">
-        <a href="javascript:;"></a>
-      </div>
-      <audio id="firstaudio" src="music/1.mp3" autoplay></audio>
-      <audio id="secondaudio" src="music/2.mp3"></audio>
     </section>
   </main>
-  <script src="js/prefixfree.min.js"></script>
+  <script src="js/less.min.js"></script>
   <script src="js/zepto.min.js"></script>
-  <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/index.js"></script>
+
 </body>
 </html>

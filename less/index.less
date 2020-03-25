@@ -4,33 +4,34 @@
   padding: 0;
   box-sizing: border-box;
 }
+ul, li {
+  list-style: none;
+}
 html, body {
   width: 100%;
   height: 100%;
 }
+
 html {
   font-size: 100px;
 }
-.layout, .loading, .phone {
+.wraper {
   width: 100%;
   height: 100%;
-}
-.loading {
-  display: none;
-}
-.phone {
-  display: block;
-}
-.layout {
   max-width: 640px;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
   .loading {
+    display: none;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 0;
     left: 0;
+    top: 0;
     background: #000;
-    .title {
+    overflow: hidden;
+    .info {
+      color: #fff;
       height: 1.4rem;
       position: absolute;
       top: 0;
@@ -38,131 +39,214 @@ html {
       right: 0;
       bottom: 0;
       margin: auto;
-      color: #fff;
       transform: translateY(-1.5rem);
+      text-align: center;
       h1 {
         font-size: .5rem;
-        text-align: center;
         height: 0.75rem;
+        margin-bottom: .2rem;
       }
       h3 {
         font-size: .26rem;
-        text-align: center;
-        height: 0.45rem;
-        margin-top: .2rem;
+        height: .45rem;
         letter-spacing: .04rem;
       }
     }
     .progress {
-      width: 4.6rem;
-      height: 0.3rem;
-      background-color: #fff;
       position: absolute;
-      top: 0;
       left: 0;
+      top: 0;
       right: 0;
       bottom: 0;
       margin: auto;
-      transform: translateY(1rem); 
-      border-radius: .2rem;
+      width: 4.6rem;
+      height: 0.3rem;
+      background: #fff;
+      border-radius: .06rem;
+      transform: translateY(1rem);
       .pro-inner {
-        width: 0;
+        width: 0%;
         height: 100%;
-        background: -webkit-linear-gradient(left bottom, #5cb85c 0%, #5cb85c 25%, #74c274 25%, #74c274 50%, #5cb85c 50%, #5cb85c 75%, #74c274 75%, #74c274 100%);
-        border-radius: .2rem;
+        background: -webkit-linear-gradient(left bottom, #5cb85c 0%, #5cb85c 25%, #74c274 25%, #74c274 50%,#5cb85c 50%, #5cb85c 75%, #74c274 75%, #74c274 100%);
         background-size: .3rem .3rem;
-        animation: runt 1s linear infinite;
-        background-repeat: repeat;
-        transition: all 0.3s linear 0s;
+        border-radius: .06rem;
+        animation: runtop 1s linear infinite;
+        transition: all 1s linear;
       }
     }
   }
   .phone {
-    background: url(../img/zf_phoneBg.jpg) no-repeat;
-    overflow: hidden;
+    display: none;
     position: absolute;
-    top: 0;
     left: 0;
-    .tittle {
-      color: #fff;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('@{url}zf_phoneBg.jpg') no-repeat;
+    background-size: 100% 100%;
+    .title {
       width: 2.62rem;
       height: 1.25rem;
       margin: 0 auto;
       margin-top: .5rem;
-      text-align: center;
-      h2 {
-        font-size: .6rem;
-      }
-      h5 {
-        margin-top: .2rem;
-        font-size: .2rem;
-      }
+      background: url('@{url}zf_phoneLogo.png') no-repeat;
+      background-size: 100% 100%;
     }
-    .currenttime {
+    .cale {
+      margin-top: .6rem;
+      height: .3rem;
+      font-size: .3rem;
+      letter-spacing: .05rem;
       color: #fff;
       text-align: center;
-      font-size: .4rem;
-      margin-top: .5rem;
+      line-height: .3rem;
     }
-    .phoneanswer {
+    .answer {
+      display: block;
+      position: absolute;
       width: 5.2rem;
       height: 3.6rem;
-      position: absolute;
+      bottom: .3rem;
       left: 50%;
       margin-left: -2.6rem;
-      bottom: .3rem;
       background: url('@{url}zf_phoneListen.png') no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
       a {
         position: absolute;
-        right: -.07rem;
-        bottom: .47rem;
+        right: -.06rem;
+        bottom: .48rem;
         width: 1.6rem;
         height: 1.6rem;
-        border: 3px solid red;
+        border: 3px solid #07eb07;
         border-radius: 50%;
-        animation: runScale 2s linear infinite;
+        animation: callscall 1s linear infinite;
       }
     }
-    .phonecall {
+    .call {
       display: none;
-      width: 5.2rem;
+      width: 5.2em;
       height: 6.59rem;
       position: absolute;
       left: 50%;
       margin-left: -2.6rem;
       bottom: .3rem;
       background: url('@{url}zf_phoneDetail.png') no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
       a {
         position: absolute;
+        width: 1.6rem;
+        height: 1.6rem;
         left: 50%;
         margin-left: -.8rem;
         bottom: .28rem;
-        width: 1.6rem;
-        height: 1.6rem;
-        background: red;
+      }
+    }
+  }
+  .message {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #EAEAEA;
+    .list {
+      position: absolute;
+      left: 0;
+      top: .2rem;
+      width: 100%;
+      height: 100%;
+      transition: all .3s linear;
+      li {
+        position: relative;
+        max-width: 3.6rem;
+        padding: .25rem;
+        margin-bottom: .4rem;
+        line-height: .4rem;
+        font-size: .26rem;
+        border-radius: 10px;
+        transform: translateY(1rem);
+        transition: all .3s linear;
         opacity: 0;
-        border-radius: 50%;
+        &.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        &.item-stu {
+          float: left;
+          margin-left: 1.25rem;
+          background: #fff;
+          border: 2px solid #cacaca ;
+          img {
+            left: -1rem;
+          }
+        }
+        &.item-tea {
+          float: right;
+          margin-right: 1.25rem;
+          background: rgba(41, 250, 14, 0.667);
+          border: 2px solid #96b474;
+          img {
+            right: -1rem;
+          }
+        }
+        img {
+          position: absolute;
+          width: 0.82rem;
+          height: 0.82rem;
+          top: 0;
+        }
+      }
+      
+      
+    }
+    .keyboard {
+      width: 100%;
+      height: 5.16rem;
+      position: absolute;
+      left: 0;
+      bottom: -.54rem;
+      background: url('@{url}zf_messageKeyboard.png') no-repeat;
+      background-size: 100% 100%;
+      transform: translateY(3.7rem);
+      transition: all .3s linear;
+      p {
+        position: absolute;
+        width: 4rem;
+        height: 0.4rem;
+        font-size: .25rem;
+        top: .35rem;
+        left: .9rem;
+      }
+      a {
+        width: 1.47em;
+        height: 0.74rem;
+        position: absolute;
+        right: .1rem;
+        bottom: .6rem;
+        background: url('@{url}zf_messageChat.png') no-repeat;
+        background-size: 100% 100%;
       }
     }
   }
 }
 
-@keyframes runt {
-	0% {
-		background-position: 0 0;
-	}
-	100% {
-		background-position: 0 -.3rem;
+// loading 动画
+@keyframes runtop {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -.3rem;
   }
 }
-@keyframes runScale{
-  0 {
+//接听 方法的动画
+@keyframes callscall {
+  0% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.4);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
