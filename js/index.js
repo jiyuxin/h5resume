@@ -56,8 +56,8 @@ let loadingRender = (function () {
         return
       } 
       alert('网络有点慢，请稍后再试！！！')
-      // window.location.href = 'http://www.baidu.com'
-    }, 5000)
+      window.location.href = 'http://www.baidu.com'
+    }, 50000)
   }
   function done() {
     let removeTimer = setTimeout(function () {
