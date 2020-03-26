@@ -68,12 +68,13 @@ let loadingRender = (function () {
   return {
     //通过入口函数，调用，把要执行的方法写在这里边，上边定义变量，外边需要的东西，在传出去
     init: function () {
+      $loading.css('display', 'block')
       run() //加载进度条的程序
       handleCal() //手动判断，是否进入下个模块
     }
   }
 })()
-loadingRender.init()
+// loadingRender.init()
 
 // phone 模块
 let phoneRender = (function () {
@@ -144,7 +145,8 @@ let messageRender = (function () {
       strLen = str.length,
       strTimer = null,
       $print = $keyboard.find('p'),
-      $submit = $keyboard.find('a')
+      $submit = $keyboard.find('a'),
+      $part = 1
   function messageShow() {
     $item.eq(++current).addClass('active')
     if (current == 2) {
@@ -154,10 +156,15 @@ let messageRender = (function () {
       })
       print()
     }
+    //第4条的时候，$list开始滚动
+    if (current >= 3) {
+      $list.css('transform', 'translateY(-' + $part++ + 'rem)')
+    }
     if (current == ($item.length - 1)) {
       clearInterval(timer)
       done()
     }
+    
   }
   function print() {
     strTimer = setInterval(function () {
@@ -182,6 +189,7 @@ let messageRender = (function () {
   function done() {
     var timer = setTimeout(function (){
       $message.remove()
+      cubeRender.init()
     }, 1000)
   }
   return {
@@ -194,3 +202,90 @@ let messageRender = (function () {
   }
 })()
 // messageRender.init()
+
+let cubeRender = (function () {
+  /**
+   * 需求： 手指放到魔方上，滑动，魔方随之转动
+   */
+  let cube = $('.cube-inner'),
+      moveX = 0,       //记录滑动的距离
+      moveY = 0,
+      $cubeWrap = $('.cube')
+      function touchStart(ev) {
+    // console.log(ev.touches[0].clientX);
+    cube.currentX = ev.touches[0].clientX  //记录第一次的初始点
+    cube.currentY = ev.touches[0].clientY
+  }
+  function touchMove(ev) {
+    //向上滑动 moveY是负的
+    //向下滑动 moveY 是正的     沿着X轴转动，正的是顺时针   -moveY
+    //向左滑动 moveX 是负的
+    //向右滑动 moveX 是正的     沿着Y轴转动，负的是顺时针    moveY
+    moveX = (ev.touches[0].clientX - parseFloat(cube.currentX)) / 3
+    moveY = (ev.touches[0].clientY - parseFloat(cube.currentY)) / 3
+    if (Math.abs(moveX) < .5 || Math.abs(moveY) < 2) return
+    cube.css('transform', 'scale(.4) rotateX('+ (-moveY) +'deg) rotateY(' + moveX + 'deg)')
+  }
+  function touchEnd() {
+    console.log('touchend');
+  }
+  return {
+    init: function () {
+      $cubeWrap.css('display', 'block')
+      cube.on('touchstart', touchStart)
+      cube.on('touchmove', touchMove)
+      cube.on('touchend', touchEnd)
+    }
+  }
+})()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//hash 模块
+let hashRender = (function () {
+  let url = window.location.href
+  let hashNum = url.indexOf('#')
+  let hash = hashNum == -1? null:url.substr(hashNum + 1)
+  return {
+    init: function () {
+      switch (hash) {
+        case 'loading':
+          console.log('loading');
+          loadingRender.init()
+        break;
+        case 'phone':
+          console.log('phone');
+          phoneRender.init()
+        break;
+        case 'message':
+          console.log('message');
+          messageRender.init()
+        break;
+        case 'cube':
+          console.log(hash);
+          cubeRender.init()
+          break;
+        default:
+          console.log('default');
+          loadingRender.init()
+        break;  
+      }
+    }
+  }
+})()
+hashRender.init()
