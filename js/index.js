@@ -210,12 +210,14 @@ let cubeRender = (function () {
   let cube = $('.cube-inner'),
       moveX = 0,       //记录滑动的距离
       moveY = 0,
-      $cubeWrap = $('.cube')
+      $cubeWrap = $('.cube'),
+      $li = cube.find('li'),
+      index = 0
       function touchStart(ev) {
-    // console.log(ev.touches[0].clientX);
-    cube.currentX = ev.touches[0].clientX  //记录第一次的初始点
-    cube.currentY = ev.touches[0].clientY
-  }
+        // console.log(ev.touches[0].clientX);
+        cube.currentX = ev.touches[0].clientX  //记录第一次的初始点
+        cube.currentY = ev.touches[0].clientY
+      }
   function touchMove(ev) {
     //向上滑动 moveY是负的
     //向下滑动 moveY 是正的     沿着X轴转动，正的是顺时针   -moveY
@@ -229,18 +231,75 @@ let cubeRender = (function () {
   function touchEnd() {
     console.log('touchend');
   }
+  function tapEvent() {
+    index = $(this).index();
+    $cubeWrap.css('display', 'none')
+    detailRender.init(index)
+  }
   return {
     init: function () {
       $cubeWrap.css('display', 'block')
       cube.on('touchstart', touchStart)
       cube.on('touchmove', touchMove)
       cube.on('touchend', touchEnd)
+      $li.singleTap(tapEvent)
     }
   }
 })()
 
 
-
+let detailRender = (function () {
+  let $detail = $('.detail')
+  let $makisu = $('.makisu')
+  let $item = $('.swiper-slide')
+  let swiper = null
+  let swiperInit = function () {
+    swiper = new Swiper('.swiper-container', {
+      effect : 'coverflow',
+      observer: true,
+      observeParents: true,
+      onTransitionEnd: change,
+      onInit: change
+    })
+  }
+  let change = function (sw) {
+    console.log('0');
+    if (sw.activeIndex == 0) {
+      $makisu.makisu({
+        selector: 'dd',
+        overlap: 0.6,
+        speed: 0.8
+      })
+      $makisu.makisu('open')
+    } else {
+      $makisu.makisu({
+        selector: 'dd',
+        overlap: 0.6,
+        speed: 0
+      })
+      $makisu.makisu('close')
+    }
+    if (sw.activeIndex == 1) {
+      console.log('1');
+    }
+    $item.each(function (index, item) {
+      if (index == sw.activeIndex) {
+        item.id = 'page' + index
+      } else {
+        item.id = null
+      }
+    })
+  }
+  return {
+    init: function (index = 0) {
+      $detail.css('display', 'block')
+      if (!swiper) {
+        swiperInit()
+      }
+      swiper.slideTo(index, 0)
+    }
+  }
+})()
 
 
 
@@ -279,6 +338,10 @@ let hashRender = (function () {
         case 'cube':
           console.log(hash);
           cubeRender.init()
+          break;
+        case 'detail':
+          console.log(hash);
+          detailRender.init()
           break;
         default:
           console.log('default');

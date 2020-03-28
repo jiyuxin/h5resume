@@ -14,7 +14,7 @@ html, body {
 html {
   font-size: 100px;
 }
-.loading, .phone, .message, .cube {
+.loading, .phone, .message, .cube, .detail{
   display: none;
 }
 .wraper {
@@ -305,6 +305,81 @@ html {
       margin-left: -1.97rem;
       background: url('@{url}zf_cubeTip.png') no-repeat;
       background-size: 100% 100%;
+    }
+  }
+  .detail {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      .swiper-slide {
+        width: 100%;
+        height: 100%;
+        // position: relative;
+        &:nth-of-type(1) {
+        }
+        &:nth-of-type(2) {
+          background: #07caec;
+        }
+        &:nth-of-type(3) {
+          background: #f01d98;
+        }
+        &:nth-of-type(4) {
+          background: #d4e20c;
+        }
+        &:nth-of-type(5) {
+          background: #f77206;
+        }
+        &:nth-of-type(6) {
+          background: #7504f7;
+        }
+      }
+    }
+    .page1 {
+      dl {
+        width: 5.4rem;
+        height: 7.2rem;
+        transform-style: preserve-3d;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -2.7rem;
+        margin-top: -3.6rem;
+        dt, dd {
+          width: 100%;
+          z-index: 1000;
+          font-size: .28rem;
+          background: rgb(69, 189, 13);
+          height: 0.6rem;
+          line-height: .6rem;
+        }
+        dt {
+          font-size: .4rem;
+          color: yellow;
+          text-align: center;
+        }
+        dd {
+          padding-left: .64rem;
+          border: .02rem dashed rgb(229, 229, 233, 3);
+          position: relative;
+          span {
+            font-size: .2rem;
+            position: absolute;
+            left: .15rem;
+            top: 0;
+            width: 0.36rem;
+            height: 0.42rem;
+            line-height: .42rem;
+            color: #fff;
+          } 
+        }
+        
+      }
+      
     }
   }
 }
